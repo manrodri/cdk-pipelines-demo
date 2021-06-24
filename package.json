@@ -5,7 +5,7 @@
     "converstaions": "bin/converstaions.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && echo ok || echo not ok",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
