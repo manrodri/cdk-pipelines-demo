@@ -13,7 +13,7 @@ environment = {
 
 app = core.App()
 
-# PipelinesWebinarStack(app, "pipelines-webinar", env=environment)
+PipelinesWebinarStack(app, "pipelines-webinar", env=environment)
 PipelineStack(app, 'PipelineStack', env=environment)
 
 app.synth()
