@@ -5,7 +5,7 @@ from aws_cdk import pipelines
 
 from .webservice_stage import WebServiceStage
 
-APP_ACCOUNT = '123456789012'
+APP_ACCOUNT = '423754860743'
 
 class PipelineStack(core.Stack):
   def __init__(self, scope: core.Construct, id: str, **kwargs):
@@ -21,9 +21,9 @@ class PipelineStack(core.Stack):
       source_action=cpactions.GitHubSourceAction(
         action_name='GitHub',
         output=source_artifact,
-        oauth_token=core.SecretValue.secrets_manager('github-token'),
-        owner='OWNER**REPLACEME',
-        repo='REPO**REPLACEME',
+        oauth_token=core.SecretValue.secrets_manager('remoteRepositorieKeys', json_field='GitHub_key'),
+        owner='manrodri',
+        repo='cdk-pipelines-demo',
         trigger=cpactions.GitHubTrigger.POLL),
 
       synth_action=pipelines.SimpleSynthAction(
@@ -35,7 +35,7 @@ class PipelineStack(core.Stack):
 
     pre_prod_app = WebServiceStage(self, 'Pre-Prod', env={
       'account': APP_ACCOUNT,
-      'region': 'eu-central-1',
+      'region': 'eu-west-1',
     })
     pre_prod_stage = pipeline.add_application_stage(pre_prod_app)
     pre_prod_stage.add_actions(pipelines.ShellScriptAction(
@@ -52,7 +52,7 @@ class PipelineStack(core.Stack):
 
     pipeline.add_application_stage(WebServiceStage(self, 'Prod', env={
       'account': APP_ACCOUNT,
-      'region': 'eu-central-1',
+      'region': 'eu-west-1',
     }))
 
 
