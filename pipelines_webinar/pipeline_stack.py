@@ -38,7 +38,7 @@ class PipelineStack(core.Stack):
       'account': APP_ACCOUNT,
       'region': 'eu-west-1',
     })
-    pre_prod_stage = pipeline.add_application_stage(pre_prod_app)
+    # pre_prod_stage = pipeline.add_application_stage(pre_prod_app)
     # pre_prod_stage.add_actions(pipelines.ShellScriptAction(
     #   action_name='Integ',
     #   run_order=pre_prod_stage.next_sequential_run_order(),
