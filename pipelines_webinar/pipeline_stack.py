@@ -24,6 +24,7 @@ class PipelineStack(core.Stack):
         oauth_token=core.SecretValue.secrets_manager('remoteRepositorieKeys', json_field='GitHub_key'),
         owner='manrodri',
         repo='cdk-pipelines-demo',
+        branch='python',
         trigger=cpactions.GitHubTrigger.POLL),
 
       synth_action=pipelines.SimpleSynthAction(
