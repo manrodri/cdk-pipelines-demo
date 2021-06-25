@@ -6,9 +6,9 @@ from pipelines_webinar.pipeline_stack import PipelineStack
 from pipelines_webinar.pipelines_webinar_stack import PipelinesWebinarStack
 
 PIPELINE_ACCOUNT = '423754860743'
-environment ={
-  'account': PIPELINE_ACCOUNT,
-  'region': 'eu-west-1',
+environment = {
+    'account': PIPELINE_ACCOUNT,
+    'region': 'eu-west-1',
 }
 
 app = core.App()
