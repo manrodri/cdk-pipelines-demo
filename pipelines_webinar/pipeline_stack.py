@@ -1,6 +1,7 @@
 from aws_cdk import core
 from aws_cdk import aws_codepipeline as codepipeline
 from aws_cdk import aws_codepipeline_actions as cpactions
+from aws_cdk import aws_codecommit as codecommit
 from aws_cdk import pipelines
 
 from .webservice_stage import WebServiceStage
@@ -15,9 +16,19 @@ class PipelineStack(core.Stack):
     source_artifact = codepipeline.Artifact()
     cloud_assembly_artifact = codepipeline.Artifact()
 
+    repository = codecommit.Repository.from_repository_name(self, "Repository", "my-repository")
+
     pipeline = pipelines.CdkPipeline(self, 'Pipeline',
       cloud_assembly_artifact=cloud_assembly_artifact,
       pipeline_name='WebinarPipeline',
+
+      # source_action=cpactions.CodeCommitSourceAction(
+      #   action_name='CodeCommit',
+      #   branch='python',
+      #   repository=repository,
+      #   trigger=cpactions.CodeCommitTrigger.POLL,
+      # ),
+
 
       source_action=cpactions.GitHubSourceAction(
         action_name='GitHub',
